@@ -140,20 +140,13 @@ def afd_palabra(lexema, palabra):
 
         
         for char in lexema:
-                print(estado)
-                if char in funcion_estados[estado].keys():
-                        estado = funcion_estados[estado][char]
+                transicion = funcion_estados[estado]
+                if char in transicion:
+                        estado = transicion[char]
                 else:
-                        estado = -1
-                        break
+                        return ESTADO_TRAMPA
 
-        if estado == -1:
-                return ESTADO_TRAMPA
         if estado in estados_finales:
                 return ESTADO_FINAL
         else:
                 return ESTADO_NO_FINAL
-
-
-x = afd_palabra(lexema, palabra)
-print(x)
