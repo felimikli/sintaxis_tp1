@@ -90,7 +90,6 @@ def afd_id(lexema):
                 funcion_estados[1][c] = 1
         for c in NUMEROS:
                 funcion_estados[1][c] = 1
-        funcion_estados[1]['_'] = 1
 
         for char in lexema:
                 transicion = funcion_estados[estado]
