@@ -51,7 +51,6 @@ NUMEROS = set("0123456789")
           # ("TOKEN_OR_IGUAL", afd_or_igual),
           # ("TOKEN_OR_DESIGUAL", afd_or_desigual),
 
-TOKENS = [("TOKEN_ID", afd_id), ("TOKEN_NUM", afd_num), ("TOKEN_ASIGNACION", afd_asignacion), ("TOKEN_ESPACIOBLANCO", afd_espacioblanco), ("TOKEN_PR_PROGRAMA", afd_pr_programa), ("TOKEN_PR_VAR", afd_pr_var), ("TOKEN_PR_BEGIN", afd_pr_begin), ("TOKEN_PR_END", afd_pr_end), ("TOKEN_PR_IF", afd_pr_if), ("TOKEN_PR_ELSE", afd_pr_else), ("TOKEN_PR_INT", afd_pr_int), ("TOKEN_PR_BOOL", afd_pr_bool), ("TOKEN_PR_TRUE", afd_pr_true), ("TOKEN_PR_FALSE", afd_pr_false), ("TOKEN_PR_NOT", afd_pr_not), ("TOKEN_PR_AND", afd_pr_and), ("TOKEN_PR_OR", afd_pr_or), ("TOKEN_PR_GOTO", afd_pr_goto), ("TOKEN_PR_LET", afd_pr_let), ("TOKEN_SP_PUNTO", afd_sp_punto), ("TOKEN_SP_COMA", afd_sp_coma), ("TOKEN_SP_DOSPUNTOS", afd_sp_dospuntos), ("TOKEN_SP_PUNTOCOMA", afd_sp_puntocoma), ("TOKEN_SP_PARENTESIS_IZQ", afd_sp_parentesis_izq), ("TOKEN_SP_PARENTESIS_DER", afd_sp_parentesis_der), ("TOKEN_SP_TRIPLEPUNTO", afd_sp_triplepunto), ("TOKEN_OM_MAS", afd_om_mas), ("TOKEN_OM_GUION", afd_om_guion), ("TOKEN_OM_ASTERISCO", afd_om_asterisco), ("TOKEN_OR_MAYOR", afd_or_mayor), ("TOKEN_OR_MENOR", afd_or_menor), ("TOKEN_OR_MAYORIGUAL", afd_or_mayorigual), ("TOKEN_OR_MENORIGUAL", afd_or_menorigual), ("TOKEN_OR_IGUAL", afd_or_igual), ("TOKEN_OR_DESIGUAL", afd_or_desigual)] 
 
 
 def afd_palabra(lexema, palabra):
@@ -134,9 +133,11 @@ def afd_espacioblanco(lexema):
         funcion_estados[0][' '] = 1
         funcion_estados[0]['\n'] = 1
         funcion_estados[0]['\t'] = 1
+        funcion_estados[0]['\r'] = 1
         funcion_estados[1][' '] = 1
         funcion_estados[1]['\n'] = 1
         funcion_estados[1]['\t'] = 1
+        funcion_estados[1]['\r'] = 1
         
 
         for char in lexema:
@@ -248,5 +249,42 @@ def afd_or_igual(lexema):
 def afd_or_desigual(lexema):
         return afd_palabra(lexema, "<>")
 
+TOKENS = [("TOKEN_ID", afd_id), ("TOKEN_NUM", afd_num), ("TOKEN_ASIGNACION", afd_asignacion), ("TOKEN_ESPACIOBLANCO", afd_espacioblanco), ("TOKEN_PR_PROGRAMA", afd_pr_programa), ("TOKEN_PR_VAR", afd_pr_var), ("TOKEN_PR_BEGIN", afd_pr_begin), ("TOKEN_PR_END", afd_pr_end), ("TOKEN_PR_IF", afd_pr_if), ("TOKEN_PR_ELSE", afd_pr_else), ("TOKEN_PR_INT", afd_pr_int), ("TOKEN_PR_BOOL", afd_pr_bool), ("TOKEN_PR_TRUE", afd_pr_true), ("TOKEN_PR_FALSE", afd_pr_false), ("TOKEN_PR_NOT", afd_pr_not), ("TOKEN_PR_AND", afd_pr_and), ("TOKEN_PR_OR", afd_pr_or), ("TOKEN_PR_GOTO", afd_pr_goto), ("TOKEN_PR_LET", afd_pr_let), ("TOKEN_SP_PUNTO", afd_sp_punto), ("TOKEN_SP_COMA", afd_sp_coma), ("TOKEN_SP_DOSPUNTOS", afd_sp_dospuntos), ("TOKEN_SP_PUNTOCOMA", afd_sp_puntocoma), ("TOKEN_SP_PARENTESIS_IZQ", afd_sp_parentesis_izq), ("TOKEN_SP_PARENTESIS_DER", afd_sp_parentesis_der), ("TOKEN_SP_TRIPLEPUNTO", afd_sp_triplepunto), ("TOKEN_OM_MAS", afd_om_mas), ("TOKEN_OM_GUION", afd_om_guion), ("TOKEN_OM_ASTERISCO", afd_om_asterisco), ("TOKEN_OR_MAYOR", afd_or_mayor), ("TOKEN_OR_MENOR", afd_or_menor), ("TOKEN_OR_MAYORIGUAL", afd_or_mayorigual), ("TOKEN_OR_MENORIGUAL", afd_or_menorigual), ("TOKEN_OR_IGUAL", afd_or_igual), ("TOKEN_OR_DESIGUAL", afd_or_desigual)] 
 
+def tokenizer(fuente):
+        tokens_return = [] # Lista de tokens final
+        puntero = 0
+        while puntero < len(fuente):
+                comienzo_lexema = puntero
+                posibles_tokens = []
+                lexema = ""
+                trampa = False
+                token_candidato = None
+                ultimo_puntero = puntero
 
+                while not trampa and puntero < len(fuente):
+                        lexema += fuente[puntero]
+                        puntero += 1
+
+                        posibles_tokens = []
+
+                        for (token_nombre, afd) in TOKENS:
+                                estado_actual = afd(lexema)
+                                if estado_actual == ESTADO_FINAL:
+                                        posibles_tokens.append(token_nombre)
+                        
+                        if(posibles_tokens):
+                                token_candidato = posibles_tokens[-1]
+                                ultimo_puntero = puntero
+                        else:
+                                trampa = True
+
+                if(token_candidato):
+                        token = (token_candidato, fuente[comienzo_lexema:ultimo_puntero])
+                        tokens_return.append(token)
+                        puntero = ultimo_puntero
+                else:
+                        raise Exception('Error: token no pertenece al lenguaje' + lexema)
+        return tokens_return
+
+print(tokenizer(input("ingresa codigo fuente prueba: ")))
