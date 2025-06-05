@@ -252,11 +252,10 @@ def afd_or_desigual(lexema):
 TOKENS = [("TOKEN_ID", afd_id), ("TOKEN_NUM", afd_num), ("TOKEN_ASIGNACION", afd_asignacion), ("TOKEN_ESPACIOBLANCO", afd_espacioblanco), ("TOKEN_PR_PROGRAMA", afd_pr_programa), ("TOKEN_PR_VAR", afd_pr_var), ("TOKEN_PR_BEGIN", afd_pr_begin), ("TOKEN_PR_END", afd_pr_end), ("TOKEN_PR_IF", afd_pr_if), ("TOKEN_PR_ELSE", afd_pr_else), ("TOKEN_PR_INT", afd_pr_int), ("TOKEN_PR_BOOL", afd_pr_bool), ("TOKEN_PR_TRUE", afd_pr_true), ("TOKEN_PR_FALSE", afd_pr_false), ("TOKEN_PR_NOT", afd_pr_not), ("TOKEN_PR_AND", afd_pr_and), ("TOKEN_PR_OR", afd_pr_or), ("TOKEN_PR_GOTO", afd_pr_goto), ("TOKEN_PR_LET", afd_pr_let), ("TOKEN_SP_PUNTO", afd_sp_punto), ("TOKEN_SP_COMA", afd_sp_coma), ("TOKEN_SP_DOSPUNTOS", afd_sp_dospuntos), ("TOKEN_SP_PUNTOCOMA", afd_sp_puntocoma), ("TOKEN_SP_PARENTESIS_IZQ", afd_sp_parentesis_izq), ("TOKEN_SP_PARENTESIS_DER", afd_sp_parentesis_der), ("TOKEN_SP_TRIPLEPUNTO", afd_sp_triplepunto), ("TOKEN_OM_MAS", afd_om_mas), ("TOKEN_OM_GUION", afd_om_guion), ("TOKEN_OM_ASTERISCO", afd_om_asterisco), ("TOKEN_OR_MAYOR", afd_or_mayor), ("TOKEN_OR_MENOR", afd_or_menor), ("TOKEN_OR_MAYORIGUAL", afd_or_mayorigual), ("TOKEN_OR_MENORIGUAL", afd_or_menorigual), ("TOKEN_OR_IGUAL", afd_or_igual), ("TOKEN_OR_DESIGUAL", afd_or_desigual)] 
 
 def tokenizer(fuente):
-        tokens_return = [] # Lista de tokens final
-        puntero = 0
+        tokens_return = [] # Lista de tokens final a pasar al parser
+        puntero = 0 # apunta a posician actual en el codigo fuente
         while puntero < len(fuente):
-                comienzo_lexema = puntero
-                posibles_tokens = []
+                comienzo_lexema = puntero 
                 lexema = ""
                 trampa = False
                 token_candidato = None
@@ -266,23 +265,27 @@ def tokenizer(fuente):
                         lexema += fuente[puntero]
                         puntero += 1
 
-                        posibles_tokens = []
+                        posibles_tokens = [] # por cada lexema, puede haber varios afd en estado no aceptado, pero no trampa. 
+                        posibles_tokens_aceptados = [] # por cada lexema, puede haber varios afd en estado.
 
                         for (token_nombre, afd) in TOKENS:
                                 estado_actual = afd(lexema)
-                                if estado_actual == ESTADO_FINAL:
+                                if estado_actual == ESTADO_NO_FINAL:
                                         posibles_tokens.append(token_nombre)
+                                if estado_actual == ESTADO_FINAL:
+                                        posibles_tokens_aceptados.append(token_nombre)
                         
-                        if(posibles_tokens):
-                                token_candidato = posibles_tokens[-1]
-                                ultimo_puntero = puntero
-                        else:
-                                trampa = True
+                        if(posibles_tokens_aceptados):
+                                token_candidato = posibles_tokens_aceptados[-1] # si hay algun afd en estado aceptado, se guarda en token candidato, priorizando todo antes de ID
+                                ultimo_puntero = puntero 
+                        elif(not posibles_tokens):
+                                trampa = True # si no hay ningun afd en estado no aceptado ni en estado aceptado, estan todos en trampa
 
-                if(token_candidato):
-                        token = (token_candidato, fuente[comienzo_lexema:ultimo_puntero])
+                if(token_candidato): # si hay un token candidato luego de estar todos en trampa
+                        token = (token_candidato, fuente[comienzo_lexema:ultimo_puntero]) # el token candidato y su lexema
                         tokens_return.append(token)
-                        puntero = ultimo_puntero
+                        # el ultimo puntero no se actualiza si todos los estados pasan a estado trampa
+                        puntero = ultimo_puntero # "retrocedemos el puntero al ultimo puntero
                 else:
                         raise Exception('Error: token no pertenece al lenguaje' + lexema)
         return tokens_return
