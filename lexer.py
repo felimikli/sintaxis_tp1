@@ -293,5 +293,3 @@ def tokenizer(fuente):
                 else:
                         raise Exception('Error: token no pertenece al lenguaje' + lexema)
         return tokens_return
-
-print(tokenizer(input("ingresa codigo fuente prueba: ")))
