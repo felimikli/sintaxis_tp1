@@ -293,3 +293,24 @@ def tokenizer(fuente):
                 else:
                         raise Exception('Error: token no pertenece al lenguaje' + lexema)
         return tokens_return
+
+# Pruebas
+tests = [
+        # Test 1
+        '''
+var x: (-100..200) = 0
+var y: bool = true
+begin:
+        if y == not false
+                goto L1;
+        else
+                goto L2;
+L1: x = x * x;
+    x = x + 2;
+L2: x = 2 * x;
+    x = x -3
+end
+''',
+        # Test 2
+
+]
