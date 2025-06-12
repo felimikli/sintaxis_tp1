@@ -253,11 +253,12 @@ def afd_or_igual(lexema):
 def afd_or_desigual(lexema):
         return afd_palabra(lexema, "<>")
 
-TOKENS = [("TOKEN_ID", afd_id), ("TOKEN_NUM", afd_num), ("TOKEN_ASIGNACION", afd_asignacion), ("TOKEN_ESPACIOBLANCO", afd_espacioblanco), ("TOKEN_PR_PROGRAMA", afd_pr_programa), ("TOKEN_PR_VAR", afd_pr_var), ("TOKEN_PR_BEGIN", afd_pr_begin), ("TOKEN_PR_END", afd_pr_end), ("TOKEN_PR_IF", afd_pr_if), ("TOKEN_PR_ELSE", afd_pr_else), ("TOKEN_PR_INT", afd_pr_int), ("TOKEN_PR_BOOL", afd_pr_bool), ("TOKEN_PR_TRUE", afd_pr_true), ("TOKEN_PR_FALSE", afd_pr_false), ("TOKEN_PR_NOT", afd_pr_not), ("TOKEN_PR_AND", afd_pr_and), ("TOKEN_PR_OR", afd_pr_or), ("TOKEN_PR_GOTO", afd_pr_goto), ("TOKEN_PR_LET", afd_pr_let), ("TOKEN_SP_PUNTO", afd_sp_punto), ("TOKEN_SP_COMA", afd_sp_coma), ("TOKEN_SP_DOSPUNTOS", afd_sp_dospuntos), ("TOKEN_SP_PUNTOCOMA", afd_sp_puntocoma), ("TOKEN_SP_PARENTESIS_IZQ", afd_sp_parentesis_izq), ("TOKEN_SP_PARENTESIS_DER", afd_sp_parentesis_der), ("TOKEN_SP_TRIPLEPUNTO", afd_sp_triplepunto), ("TOKEN_OM_MAS", afd_om_mas), ("TOKEN_OM_GUION", afd_om_guion), ("TOKEN_OM_ASTERISCO", afd_om_asterisco), ("TOKEN_OR_MAYOR", afd_or_mayor), ("TOKEN_OR_MENOR", afd_or_menor), ("TOKEN_OR_MAYORIGUAL", afd_or_mayorigual), ("TOKEN_OR_MENORIGUAL", afd_or_menorigual), ("TOKEN_OR_IGUAL", afd_or_igual), ("TOKEN_OR_DESIGUAL", afd_or_desigual)] 
+# Pongo primero los tokens de las palabras reservadas para que detecte palabras reservadas mal escritas, y no le asigne el token de id 
+TOKENS = [("TOKEN_PR_PROGRAMA", afd_pr_programa), ("TOKEN_PR_VAR", afd_pr_var), ("TOKEN_PR_BEGIN", afd_pr_begin), ("TOKEN_PR_END", afd_pr_end), ("TOKEN_PR_IF", afd_pr_if), ("TOKEN_PR_ELSE", afd_pr_else), ("TOKEN_PR_INT", afd_pr_int), ("TOKEN_PR_BOOL", afd_pr_bool), ("TOKEN_PR_TRUE", afd_pr_true), ("TOKEN_PR_FALSE", afd_pr_false), ("TOKEN_PR_NOT", afd_pr_not), ("TOKEN_PR_AND", afd_pr_and), ("TOKEN_PR_OR", afd_pr_or), ("TOKEN_PR_GOTO", afd_pr_goto), ("TOKEN_PR_LET", afd_pr_let), ("TOKEN_ASIGNACION", afd_asignacion), ("TOKEN_OR_MAYORIGUAL", afd_or_mayorigual), ("TOKEN_OR_MENORIGUAL", afd_or_menorigual), ("TOKEN_OR_IGUAL", afd_or_igual), ("TOKEN_OR_DESIGUAL", afd_or_desigual), ("TOKEN_OR_MAYOR", afd_or_mayor), ("TOKEN_OR_MENOR", afd_or_menor), ("TOKEN_OM_MAS", afd_om_mas), ("TOKEN_OM_GUION", afd_om_guion), ("TOKEN_OM_ASTERISCO", afd_om_asterisco), ("TOKEN_SP_PUNTO", afd_sp_punto), ("TOKEN_SP_COMA", afd_sp_coma), ("TOKEN_SP_DOSPUNTOS", afd_sp_dospuntos), ("TOKEN_SP_PUNTOCOMA", afd_sp_puntocoma), ("TOKEN_SP_PARENTESIS_IZQ", afd_sp_parentesis_izq), ("TOKEN_SP_PARENTESIS_DER", afd_sp_parentesis_der), ("TOKEN_SP_TRIPLEPUNTO", afd_sp_triplepunto), ("TOKEN_ID", afd_id), ("TOKEN_NUM", afd_num), ("TOKEN_ESPACIOBLANCO", afd_espacioblanco)]
 
 def tokenizer(fuente):
         tokens_return = [] # Lista de tokens final a pasar al parser
-        puntero = 0 # apunta a posician actual en el codigo fuente
+        puntero = 0 # apunta a posicion actual en el codigo fuente
         while puntero < len(fuente):
                 comienzo_lexema = puntero 
                 lexema = ""
@@ -280,7 +281,7 @@ def tokenizer(fuente):
                                         posibles_tokens_aceptados.append(token_nombre)
                         
                         if(posibles_tokens_aceptados):
-                                token_candidato = posibles_tokens_aceptados[-1] # si hay algun afd en estado aceptado, se guarda en token candidato, priorizando todo antes de ID
+                                token_candidato = posibles_tokens_aceptados[0] # Si hay más de un AFD que acepta el lexema, se elige el primero en la lista TOKENS.
                                 ultimo_puntero = puntero 
                         elif(not posibles_tokens):
                                 trampa = True # si no hay ningun afd en estado no aceptado ni en estado aceptado, estan todos en trampa
@@ -291,14 +292,14 @@ def tokenizer(fuente):
                         # el ultimo puntero no se actualiza si todos los estados pasan a estado trampa
                         puntero = ultimo_puntero # "retrocedemos el puntero al ultimo puntero
                 else:
-                        raise Exception('Error: token no pertenece al lenguaje' + lexema)
+                        raise Exception('Error: token no pertenece al lenguaje ' + lexema)
         return tokens_return
 
 # Pruebas
 tests = [
         # Test 1
         '''
-var x: (-100..200) = 0
+var x: (-100...200) = 0
 var y: bool = true
 begin:
         if y == not false
@@ -311,6 +312,12 @@ L2: x = 2 * x;
     x = x -3
 end
 ''',
-        # Test 2
-
-]
+        # Test 2. En este caso, detecta a "vad" como id, entonces luego eso daría error en el parser.
+        '''
+vad numero: (-100...200) = 0
+        ''',
+        # Test 3. Esta prueba arroja error de token
+        '''
+var __: bool = true
+'''
+]       
