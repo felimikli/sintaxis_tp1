@@ -292,11 +292,16 @@ def tokenizer(fuente):
                         # el ultimo puntero no se actualiza si todos los estados pasan a estado trampa
                         puntero = ultimo_puntero # "retrocedemos el puntero al ultimo puntero
                 else:
-                        raise Exception('Error: token no pertenece al lenguaje ' + lexema)
+                        tokens_return.append(("TOKEN_ERROR" , fuente[comienzo_lexema:ultimo_puntero]))
+                        return tokens_return   
         return tokens_return
 
 # Pruebas
 tests = [
+        #Test 0 
+        '''
+var afd: hola + mundo
+''',
         # Test 1
         '''
 var x: (-100...200) = 0
@@ -319,5 +324,51 @@ vad numero: (-100...200) = 0
         # Test 3
         '''
 var __: bool = true
-'''
-]       
+''',
+    #Test 4
+    '''
+var x: int = 4
+if x == 4 or x >= 5
+    x = x * 2
+
+''',
+    #Test 5
+    ''' 
+    var gama: = beta 
+befin: 
+     if( gama=beta ){
+        game != alfa
+     }
+''',
+    #Test 6
+    '''
+5 > 4 < 14 != 24
+''',  
+    #Test 7
+    '''
+@ += var let --
+program
+''',
+    #Test 8
+    '''
+begin program:
+    var v1: 
+    8--9+32 === 5
+    end
+''',
+    #Test 9 
+    '''
+1palabra 
+    programa end else: true,not and:: let. ... ;*< >= <= 
+    <>,. qjgfquhg
+    end
+''',
+    
+]  
+for i in range(len(tests)):
+    print(f'=========== TEST N:{i} =========')
+    print(tests[i])
+    print(f'----OUTPUT----')
+    print(tokenizer(tests[i]))
+    print("")
+
