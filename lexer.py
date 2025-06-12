@@ -312,11 +312,11 @@ L2: x = 2 * x;
     x = x -3
 end
 ''',
-        # Test 2. En este caso, detecta a "vad" como id, entonces luego eso daría error en el parser.
+        # Test 2
         '''
 vad numero: (-100...200) = 0
         ''',
-        # Test 3. Esta prueba arroja error de token
+        # Test 3
         '''
 var __: bool = true
 '''

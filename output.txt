@@ -1,0 +1,29 @@
+=========TEST N°1=========
+var x: (-100...200) = 0
+var y: bool = true
+begin:
+        if y == not false
+                goto L1;
+        else
+                goto L2;
+L1: x = x * x;
+    x = x + 2;
+L2: x = 2 * x;
+    x = x -3
+end
+
+Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '0'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'y'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_BOOL', 'bool'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_TRUE', 'true'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', '\n        '), ('TOKEN_PR_IF', 'if'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'y'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_IGUAL', '=='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_NOT', 'not'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_FALSE', 'false'), ('TOKEN_ESPACIOBLANCO', '\n                '), ('TOKEN_PR_GOTO', 'goto'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'L1'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n        '), ('TOKEN_PR_ELSE', 'else'), ('TOKEN_ESPACIOBLANCO', '\n                '), ('TOKEN_PR_GOTO', 'goto'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'L2'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_ID', 'L1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n    '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OM_MAS', '+'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '2'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_ID', 'L2'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '2'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n    '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '-3'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_END', 'end'), ('TOKEN_ESPACIOBLANCO', '\n')]
+
+=========TEST N°2=========
+vad numero: (-100...200) = 0
+
+Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_ID', 'vad'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'numero'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '0'), ('TOKEN_ESPACIOBLANCO', '\n        ')]
+
+Nota: como hay un typo en la palabra reservada 'var', el lexer lo detecta como id. Luego el parser va a esperar un token var, pero va a recibir un token id, entonces lo rechaza
+
+=========TEST N°3=========
+var __: bool = true
+
+Salida: raise Exception('Error: token no pertenece al lenguaje ' + lexema)
+
+Nota: se intenta definir una variable de nombre '__', entonces arroja error de token.
