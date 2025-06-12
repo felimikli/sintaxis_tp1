@@ -363,6 +363,13 @@ begin program:
     <>,. qjgfquhg
     end
 ''',
+    # Test 10
+    '''
+begin program:
+        var number: (-100...200) = 1
+        if number == 1:
+                end;
+'''
     
 ]  
 for i in range(len(tests)):
