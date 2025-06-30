@@ -1,4 +1,12 @@
-=========TEST N:1=========
+=========== TEST N:0 =========
+
+var afd: hola + mundo
+
+----OUTPUT----
+[('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'afd'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ID', 'hola'), ('TOKEN_OM_MAS', '+'), ('TOKEN_ID', 'mundo')]
+
+=========== TEST N:1 =========
+
 var x: (-100...200) = 0
 var y: bool = true
 begin:
@@ -12,67 +20,86 @@ L2: x = 2 * x;
     x = x -3
 end
 
-Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '0'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'y'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_BOOL', 'bool'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_TRUE', 'true'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', '\n        '), ('TOKEN_PR_IF', 'if'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'y'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_IGUAL', '=='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_NOT', 'not'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_FALSE', 'false'), ('TOKEN_ESPACIOBLANCO', '\n                '), ('TOKEN_PR_GOTO', 'goto'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'L1'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n        '), ('TOKEN_PR_ELSE', 'else'), ('TOKEN_ESPACIOBLANCO', '\n                '), ('TOKEN_PR_GOTO', 'goto'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'L2'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_ID', 'L1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n    '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OM_MAS', '+'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '2'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_ID', 'L2'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '2'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n    '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '-3'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_END', 'end'), ('TOKEN_ESPACIOBLANCO', '\n')]
+----OUTPUT----
+[('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'x'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '0'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'y'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_BOOL', 'bool'), ('TOKEN_ASIGNACION', '='), ('TOKEN_PR_TRUE', 'true'), ('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_IF', 'if'), ('TOKEN_ID', 'y'), ('TOKEN_OPERADOR_RELACIONAL', '=='), ('TOKEN_PR_NOT', 'not'), ('TOKEN_PR_FALSE', 'false'), ('TOKEN_PR_GOTO', 'goto'), ('TOKEN_ID', 'L1'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_PR_ELSE', 'else'), ('TOKEN_PR_GOTO', 'goto'), ('TOKEN_ID', 'L2'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ID', 'L1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ID', 'x'), ('TOKEN_ASIGNACION', '='), ('TOKEN_ID', 'x'), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_ID', 'x'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ID', 'x'), ('TOKEN_ASIGNACION', '='), ('TOKEN_ID', 'x'), ('TOKEN_OM_MAS', '+'), ('TOKEN_NUM', '2'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ID', 'L2'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ID', 'x'), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '2'), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_ID', 'x'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ID', 'x'), ('TOKEN_ASIGNACION', '='), ('TOKEN_ID', 'x'), ('TOKEN_NUM', '-3'), ('TOKEN_PR_END', 'end')]
 
-=========TEST N:2=========
+=========== TEST N:2 =========
+
 vad numero: (-100...200) = 0
+        
+----OUTPUT----
+[('TOKEN_ID', 'vad'), ('TOKEN_ID', 'numero'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '0')]
 
-Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_ID', 'vad'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'numero'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '0'), ('TOKEN_ESPACIOBLANCO', '\n        ')]
+=========== TEST N:3 =========
 
-Nota: como hay un typo en la palabra reservada 'var', el lexer lo detecta como id. Luego el parser va a esperar un token var, pero va a recibir un token id, entonces lo rechaza
-
-=========TEST N:3=========
 var __: bool = true
 
-Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ERROR', '')]
+----OUTPUT----
+[('TOKEN_PR_VAR', 'var'), ('TOKEN_ERROR', '_')]
 
-=========TEST N°4=========
+=========== TEST N:4 =========
+
 var x: int = 4
 if x == 4 or x >= 5
     x = x * 2
 
-Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_INT', 'int'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '4'), ('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_IF', 'if'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_IGUAL', '=='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '4'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_OR', 'or'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_MAYORIGUAL', '>='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '5'), ('TOKEN_ESPACIOBLANCO', '\n    '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'x'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '2'), ('TOKEN_ESPACIOBLANCO', '\n\n')]
 
-=========TEST N:5=========
-var gama: = beta
-befin:
+----OUTPUT----
+[('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'x'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_INT', 'int'), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '4'), ('TOKEN_PR_IF', 'if'), ('TOKEN_ID', 'x'), ('TOKEN_OPERADOR_RELACIONAL', '=='), ('TOKEN_NUM', '4'), ('TOKEN_PR_OR', 'or'), ('TOKEN_ID', 'x'), ('TOKEN_OPERADOR_RELACIONAL', '>='), ('TOKEN_NUM', '5'), ('TOKEN_ID', 'x'), ('TOKEN_ASIGNACION', '='), ('TOKEN_ID', 'x'), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_NUM', '2')]
+
+=========== TEST N:5 =========
+ 
+    var gama: = beta 
+befin: 
      if( gama=beta ){
         game != alfa
      }
 
-Salida: [('TOKEN_ESPACIOBLANCO', ' \n    '), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'gama'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'beta'), ('TOKEN_ESPACIOBLANCO', ' \n'), ('TOKEN_ID', 'befin'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' \n     '), ('TOKEN_PR_IF', 'if'), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'gama'), ('TOKEN_ASIGNACION', '='), ('TOKEN_ID', 'beta'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ERROR', '')]
+----OUTPUT----
+[('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'gama'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ASIGNACION', '='), ('TOKEN_ID', 'beta'), ('TOKEN_ID', 'befin'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_IF', 'if'), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_ID', 'gama'), ('TOKEN_ASIGNACION', '='), ('TOKEN_ID', 'beta'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ERROR', '{')]
 
 =========== TEST N:6 =========
+
 5 > 4 < 14 != 24
 
-[('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_NUM', '5'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_MAYOR', '>'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '4'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_MENOR', '<'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '14'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ERROR', '')]
+----OUTPUT----
+[('TOKEN_NUM', '5'), ('TOKEN_OPERADOR_RELACIONAL', '>'), ('TOKEN_NUM', '4'), ('TOKEN_OPERADOR_RELACIONAL', '<'), ('TOKEN_NUM', '14'), ('TOKEN_ERROR', '!')]
 
 =========== TEST N:7 =========
+
 @ += var let --
 program
 
-Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_ERROR', '')]
+----OUTPUT----
+[('TOKEN_ERROR', '@')]
 
 =========== TEST N:8 =========
+
 begin program:
-    var v1:
+    var v1: 
     8--9+32 === 5
     end
 
-Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'program'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', '\n    '), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'v1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' \n    '), ('TOKEN_NUM', '8'), ('TOKEN_OM_GUION', '-'), ('TOKEN_NUM', '-9'), ('TOKEN_OM_MAS', '+'), ('TOKEN_NUM', '32'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_IGUAL', '=='), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '5'), ('TOKEN_ESPACIOBLANCO', '\n    '), ('TOKEN_PR_END', 'end'), ('TOKEN_ESPACIOBLANCO', '\n')]
+----OUTPUT----
+[('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_ID', 'program'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'v1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_NUM', '8'), ('TOKEN_OM_GUION', '-'), ('TOKEN_NUM', '-9'), ('TOKEN_OM_MAS', '+'), ('TOKEN_NUM', '32'), ('TOKEN_OPERADOR_RELACIONAL', '=='), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '5'), ('TOKEN_PR_END', 'end')]
 
 =========== TEST N:9 =========
-1palabra
-    programa end else: true,not and:: let. ... ;*< >= <=
+
+1palabra 
+    programa end else: true,not and:: let. ... ;*< >= <= 
     <>,. qjgfquhg
     end
 
-Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_NUM', '1'), ('TOKEN_ID', 'palabra'), ('TOKEN_ESPACIOBLANCO', ' \n    '), ('TOKEN_PR_PROGRAMA', 'programa'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_END', 'end'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_ELSE', 'else'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_TRUE', 'true'), ('TOKEN_SP_COMA', ','), ('TOKEN_PR_NOT', 'not'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_AND', 'and'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_PR_LET', 'let'), ('TOKEN_SP_PUNTO', '.'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_OR_MENOR', '<'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_MAYORIGUAL', '>='), ('TOK, ('TOKEN_ESPACIOBLANCO', '\n    '), ('TOKEN_PR_END', 'end'), ('TOKEN_ESPACIOBLANCO', '\n')]
+----OUTPUT----
+[('TOKEN_NUM', '1'), ('TOKEN_ID', 'palabra'), ('TOKEN_PR_PROGRAMA', 'programa'), ('TOKEN_PR_END', 'end'), ('TOKEN_PR_ELSE', 'else'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_TRUE', 'true'), ('TOKEN_SP_COMA', ','), ('TOKEN_PR_NOT', 'not'), ('TOKEN_PR_AND', 'and'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_LET', 'let'), ('TOKEN_SP_PUNTO', '.'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_OPERADOR_RELACIONAL', '<'), ('TOKEN_OPERADOR_RELACIONAL', '>='), ('TOKEN_OPERADOR_RELACIONAL', '<='), ('TOKEN_OPERADOR_RELACIONAL', '<>'), ('TOKEN_SP_COMA', ','), ('TOKEN_SP_PUNTO', '.'), ('TOKEN_ID', 'qjgfquhg'), ('TOKEN_PR_END', 'end')]
 
 =========== TEST N:10 =========
+
 begin program:
         var number: (-100...200) = 1
         if number == 1:
                 end;
 
-Salida: [('TOKEN_ESPACIOBLANCO', '\n'), ('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'program'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', '\n        '), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'number'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ASIGNACION', '='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '1'), ('TOKEN_ESPACIOBLANCO', '\n        '), ('TOKEN_PR_IF', 'if'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_ID', 'number'), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_OR_IGUAL', '=='), ('TOKEN_ESPACIOBLANCO', ' '), ('TOKEN_NUM', '1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_ESPACIOBLANCO', '\n                '), ('TOKEN_PR_END', 'end'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_ESPACIOBLANCO', '\n')]
+----OUTPUT----
+[('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_ID', 'program'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'number'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '1'), ('TOKEN_PR_IF', 'if'), ('TOKEN_ID', 'number'), ('TOKEN_OPERADOR_RELACIONAL', '=='), ('TOKEN_NUM', '1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_END', 'end'), ('TOKEN_SP_PUNTOCOMA', ';')]
+
