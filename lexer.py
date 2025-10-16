@@ -1,6 +1,6 @@
 ESTADO_FINAL = "ESTADO FINAL"
 ESTADO_NO_FINAL = "ESTADO NO FINAL"
-ESTADO_TRAMPA = "ESTADO TRAMPA" 
+ESTADO_TRAMPA = "ESTADO TRAMPA"
 
 LETRAS_MIN = set("abcdefghijklmnopqrstuvwxyz")
 LETRAS_MAY = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -59,7 +59,7 @@ def afd_palabra(lexema, palabra):
 
         if(length_lexema > length_palabra):
                 return ESTADO_TRAMPA
-        
+
         estado = 0
         estados_finales = [length_palabra]
         # Lista de dicts describe funcion de estados
@@ -108,7 +108,7 @@ def afd_num(lexema):
         estados_finales = [2]
         funcion_estados = [{}, {}, {}]
         funcion_estados[0]['-'] = 1
-        
+
         for c in NUMEROS:
                 funcion_estados[0][c] = 2
                 funcion_estados[1][c] = 2
@@ -138,7 +138,6 @@ def afd_espacioblanco(lexema):
         funcion_estados[1]['\n'] = 1
         funcion_estados[1]['\t'] = 1
         funcion_estados[1]['\r'] = 1
-        
 
         for char in lexema:
                 transicion = funcion_estados[estado]
@@ -180,7 +179,7 @@ def afd_asignacion(lexema):
         return afd_palabra(lexema, "=")
 
 def afd_pr_programa(lexema):
-        return afd_palabra(lexema, "programa")
+        return afd_palabra(lexema, "program")
 
 def afd_pr_var(lexema):
         return afd_palabra(lexema, "var")
