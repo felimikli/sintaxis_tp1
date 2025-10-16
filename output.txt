@@ -81,7 +81,7 @@ begin program:
     end
 
 ----OUTPUT----
-[('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_ID', 'program'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'v1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_NUM', '8'), ('TOKEN_OM_GUION', '-'), ('TOKEN_NUM', '-9'), ('TOKEN_OM_MAS', '+'), ('TOKEN_NUM', '32'), ('TOKEN_OPERADOR_RELACIONAL', '=='), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '5'), ('TOKEN_PR_END', 'end')]
+[('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_PR_PROGRAMA', 'program'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'v1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_NUM', '8'), ('TOKEN_OM_GUION', '-'), ('TOKEN_NUM', '-9'), ('TOKEN_OM_MAS', '+'), ('TOKEN_NUM', '32'), ('TOKEN_OPERADOR_RELACIONAL', '=='), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '5'), ('TOKEN_PR_END', 'end')]
 
 =========== TEST N:9 =========
 
@@ -91,7 +91,7 @@ begin program:
     end
 
 ----OUTPUT----
-[('TOKEN_NUM', '1'), ('TOKEN_ID', 'palabra'), ('TOKEN_PR_PROGRAMA', 'programa'), ('TOKEN_PR_END', 'end'), ('TOKEN_PR_ELSE', 'else'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_TRUE', 'true'), ('TOKEN_SP_COMA', ','), ('TOKEN_PR_NOT', 'not'), ('TOKEN_PR_AND', 'and'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_LET', 'let'), ('TOKEN_SP_PUNTO', '.'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_OPERADOR_RELACIONAL', '<'), ('TOKEN_OPERADOR_RELACIONAL', '>='), ('TOKEN_OPERADOR_RELACIONAL', '<='), ('TOKEN_OPERADOR_RELACIONAL', '<>'), ('TOKEN_SP_COMA', ','), ('TOKEN_SP_PUNTO', '.'), ('TOKEN_ID', 'qjgfquhg'), ('TOKEN_PR_END', 'end')]
+[('TOKEN_NUM', '1'), ('TOKEN_ID', 'palabra'), ('TOKEN_ID', 'programa'), ('TOKEN_PR_END', 'end'), ('TOKEN_PR_ELSE', 'else'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_TRUE', 'true'), ('TOKEN_SP_COMA', ','), ('TOKEN_PR_NOT', 'not'), ('TOKEN_PR_AND', 'and'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_LET', 'let'), ('TOKEN_SP_PUNTO', '.'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_SP_PUNTOCOMA', ';'), ('TOKEN_OM_ASTERISCO', '*'), ('TOKEN_OPERADOR_RELACIONAL', '<'), ('TOKEN_OPERADOR_RELACIONAL', '>='), ('TOKEN_OPERADOR_RELACIONAL', '<='), ('TOKEN_OPERADOR_RELACIONAL', '<>'), ('TOKEN_SP_COMA', ','), ('TOKEN_SP_PUNTO', '.'), ('TOKEN_ID', 'qjgfquhg'), ('TOKEN_PR_END', 'end')]
 
 =========== TEST N:10 =========
 
@@ -101,5 +101,5 @@ begin program:
                 end;
 
 ----OUTPUT----
-[('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_ID', 'program'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'number'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '1'), ('TOKEN_PR_IF', 'if'), ('TOKEN_ID', 'number'), ('TOKEN_OPERADOR_RELACIONAL', '=='), ('TOKEN_NUM', '1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_END', 'end'), ('TOKEN_SP_PUNTOCOMA', ';')]
+[('TOKEN_PR_BEGIN', 'begin'), ('TOKEN_PR_PROGRAMA', 'program'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_VAR', 'var'), ('TOKEN_ID', 'number'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_SP_PARENTESIS_IZQ', '('), ('TOKEN_NUM', '-100'), ('TOKEN_SP_TRIPLEPUNTO', '...'), ('TOKEN_NUM', '200'), ('TOKEN_SP_PARENTESIS_DER', ')'), ('TOKEN_ASIGNACION', '='), ('TOKEN_NUM', '1'), ('TOKEN_PR_IF', 'if'), ('TOKEN_ID', 'number'), ('TOKEN_OPERADOR_RELACIONAL', '=='), ('TOKEN_NUM', '1'), ('TOKEN_SP_DOSPUNTOS', ':'), ('TOKEN_PR_END', 'end'), ('TOKEN_SP_PUNTOCOMA', ';')]
 

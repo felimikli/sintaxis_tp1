@@ -260,7 +260,7 @@ def tokenizer(fuente):
         tokens_return = [] # Lista de tokens final a pasar al parser
         puntero = 0 # apunta a posicion actual en el codigo fuente
         while puntero < len(fuente):
-                comienzo_lexema = puntero 
+                comienzo_lexema = puntero
                 lexema = ""
                 trampa = False
                 token_candidato = None
@@ -279,7 +279,7 @@ def tokenizer(fuente):
                                         posibles_tokens.append(token_nombre)
                                 if estado_actual == ESTADO_FINAL:
                                         posibles_tokens_aceptados.append(token_nombre)
-                        
+
                         if(posibles_tokens_aceptados):
                                 token_candidato = posibles_tokens_aceptados[0] # Si hay más de un AFD que acepta el lexema, se elige el primero en la lista TOKENS.
                                 ultimo_puntero = puntero
@@ -296,87 +296,3 @@ def tokenizer(fuente):
                         tokens_return.append(("TOKEN_ERROR" , fuente[comienzo_lexema:puntero]))
                         return tokens_return
         return tokens_return
-
-# Pruebas
-tests = [
-        #Test 0 
-        '''
-var afd: hola + mundo
-''',
-        # Test 1
-        '''
-var x: (-100...200) = 0
-var y: bool = true
-begin:
-        if y == not false
-                goto L1;
-        else
-                goto L2;
-L1: x = x * x;
-    x = x + 2;
-L2: x = 2 * x;
-    x = x -3
-end
-''',
-        # Test 2
-        '''
-vad numero: (-100...200) = 0
-        ''',
-        # Test 3
-        '''
-var __: bool = true
-''',
-    #Test 4
-    '''
-var x: int = 4
-if x == 4 or x >= 5
-    x = x * 2
-
-''',
-    #Test 5
-    ''' 
-    var gama: = beta 
-befin: 
-     if( gama=beta ){
-        game != alfa
-     }
-''',
-    #Test 6
-    '''
-5 > 4 < 14 != 24
-''',  
-    #Test 7
-    '''
-@ += var let --
-program
-''',
-    #Test 8
-    '''
-begin program:
-    var v1: 
-    8--9+32 === 5
-    end
-''',
-    #Test 9 
-    '''
-1palabra 
-    programa end else: true,not and:: let. ... ;*< >= <= 
-    <>,. qjgfquhg
-    end
-''',
-    # Test 10
-    '''
-begin program:
-        var number: (-100...200) = 1
-        if number == 1:
-                end;
-'''
-    
-]  
-for i in range(len(tests)):
-        print(f'=========== TEST N:{i} =========')
-        print(tests[i])
-        print(f'----OUTPUT----')
-        print(tokenizer(tests[i]))
-        print("")
-
